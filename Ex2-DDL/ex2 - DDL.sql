@@ -31,21 +31,26 @@ CREATE TABLE Actor(
 -- below tables contain fk's
 CREATE TABLE Movie(
 	MovieId INT PRIMARY KEY AUTO_INCREMENT,
-    FOREIGN KEY fk_Movie_Genre(GenreId)
-		REFERENCES Genre(GenreId),
-	FOREIGN KEY fk_Movie_Director(DirectorId)
-		REFERENCES Director(DirectorId),
-	FOREIGN KEY fk_Movie_Rating(RatingId)
-		REFERENCES Rating(RatingId),
-	Title VARCHAR(128) NOT NULL,
-    ReleaseDate CHAR(10) NULL
+    GenreId INT NOT NULL,
+    DirectorId INT NULL,
+    RatingId INT NOT NULL,
+    Title VARCHAR(128) NOT NULL,
+    ReleaseDate CHAR(10) NULL,
+    CONSTRAINT `fk_Movie_Genre` FOREIGN KEY (GenreId)
+		REFERENCES Genre (GenreId),
+	CONSTRAINT `fk_Movie_Director` FOREIGN KEY (DirectorId)
+		REFERENCES Director (DirectorId),
+	CONSTRAINT `fk_Movie_Rating` FOREIGN KEY (RatingId)
+		REFERENCES Rating (RatingId)
 );
 
-CREATE TABLE CastMembers(
+CREATE TABLE CastMember(
 	CastMemberId INT PRIMARY KEY AUTO_INCREMENT,
-    FOREIGN KEY fk_CastMembers_Actor(ActorId)
-		REFERENCES Actor(ActorId),
-	FOREIGN KEY fk_CastMembers_Movie(MovieId)
-		REFERENCES Movie(MovieId),
-	Role VARCHAR(50) NOT NULL
+    `Role` VARCHAR(50) NOT NULL,
+    ActorId INT NOT NULL,
+    MovieId INT NOT NULL,
+    CONSTRAINT `fk_CastMembers_Actor` FOREIGN KEY (ActorId)
+		REFERENCES Actor (ActorId),
+	CONSTRAINT `fk_CastMembers_Movie` FOREIGN KEY (MovieId)
+		REFERENCES Movie (MovieId)
 );
