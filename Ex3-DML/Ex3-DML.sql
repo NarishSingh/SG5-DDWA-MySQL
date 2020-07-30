@@ -109,6 +109,7 @@ INSERT INTO CastMember (CastMemberId, ActorId, MovieId, `Role`)
 -- SELECT * FROM Movie;
 -- SELECT * FROM CastMember;
 
+-- Updates 
 UPDATE Movie 
 SET 
     Title = 'Ghostbusters (1984)',
@@ -127,16 +128,31 @@ WHERE
 -- SELECT * FROM Genre;
 
 -- Deletions
-DELETE FROM CastMember
-WHERE MovieId = 1;
+DELETE FROM CastMember 
+WHERE
+    MovieId = 1;
 
-DELETE FROM Movie
-WHERE MovieId = 1;
+DELETE FROM Movie 
+WHERE
+    MovieId = 1;
 
-DELETE FROM Movie
-WHERE MovieId = 1;
+DELETE FROM Movie 
+WHERE
+    MovieId = 1;
 
 -- SELECT * FROM CastMember;
 -- SELECT * FROM Movie;
 
 -- Alterations
+ALTER TABLE Actor
+	ADD COLUMN	(
+		DateOfDeath date NULL
+	);
+
+UPDATE Actor 
+SET 
+    DateOfDeath = '1994-03-04'
+WHERE
+    ActorId = 3;
+
+-- SELECT * FROM Actor;
