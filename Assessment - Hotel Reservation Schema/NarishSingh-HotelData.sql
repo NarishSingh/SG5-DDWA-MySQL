@@ -75,6 +75,7 @@ VALUES
     (402, 2),
     (402, 3);
 
+-- GuestId = GuestAddressID 
 INSERT INTO guestaddress (GuestAddressId, Address, City, State, ZipCode)
 VALUES
 	(1, '100-10 Testing Blvd', 'NYC', 'NY', '55555'),
@@ -134,3 +135,21 @@ VALUES
     (302, 11, 2, 0, '2023-12-24', '2023-12-28', 699.96);
 
 -- Deletion of Jeremiah Pendergrass
+DELETE FROM reservation
+WHERE GuestId = 8;
+DELETE FROM guest
+WHERE GuestId = 8;
+DELETE FROM guestaddress
+WHERE GuestAddressId = 8;
+
+--  view data
+SELECT * FROM room
+ORDER BY RoomNum;
+SELECT * FROM roomtype;
+SELECT * FROM roomamenity
+ORDER BY RoomNum;
+SELECT * FROM amenity;
+
+SELECT * FROM guest;
+SELECT * FROM guestaddress;
+SELECT * FROM reservation;
