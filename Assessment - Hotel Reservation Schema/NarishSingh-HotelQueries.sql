@@ -63,10 +63,11 @@ SELECT
     res.ReservationId,
     res.TotalRoomCost
 FROM room ro
-RIGHT OUTER JOIN reservation res ON res.RoomNum = ro.RoomNum
-ORDER BY res.ReservationId;
+LEFT OUTER JOIN reservation res ON res.RoomNum = ro.RoomNum
+ORDER BY ro.RoomNum;
+-- ORDER BY res.ReservationId;
 
--- 24 rows
+-- 26 rows
 
 -------------------------------------------------------
 
@@ -74,18 +75,18 @@ ORDER BY res.ReservationId;
 -- all rooms with at least 3 guests during April 2023
 SELECT
 	ro.RoomNum,
-    COUNT(res.AdultCount) + COUNT(res.ChildCount) TotalOccupants,
+    res.AdultCount + res.ChildCount TotalOccupants,
     res.StartDate,
     res.EndDate
 FROM room ro
 INNER JOIN reservation res ON res.RoomNum = ro.RoomNum
-GROUP BY ro.RoomNum
-HAVING COUNT(res.AdultCount) + COUNT(res.ChildCount) >= 3
+WHERE res.AdultCount + res.ChildCount >= 3
 	AND 
 		((res.StartDate >= '2023-04-01' AND res.StartDate <= '2023-04-30') 
-		OR (res.EndDate >= '2023-04-01' AND res.EndDate <= '2023-04-30'));
+		OR (res.EndDate >= '2023-04-01' AND res.EndDate <= '2023-04-30'))
+GROUP BY ro.RoomNum;
 
--- 1 row
+-- 0 row
 
 -------------------------------------------------------
 
