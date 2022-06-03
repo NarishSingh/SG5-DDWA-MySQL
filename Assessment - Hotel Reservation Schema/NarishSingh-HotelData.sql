@@ -2,20 +2,20 @@ USE hotel;
 
 INSERT INTO roomtype (RoomTypeId, TypeName, BasePrice, ExtraPersonFee, StandardOccupany, MaxOccupancy)
 VALUES
-	(1, 'Single', 149.99, 0.00, 2, 2),
+    (1, 'Single', 149.99, 0.00, 2, 2),
     (2, 'Double', 174.99, 10.00, 2, 4),
     (3, 'Suite', 399.99, 20.00, 3, 8);
 
 INSERT INTO amenity (AmenityId, AmenityName, AmenityCost)
 VALUES
-	(1, 'Microwave', 0.00),
+    (1, 'Microwave', 0.00),
     (2, 'Refrigerator', 0.00),
     (3, 'Oven', 0.00),
     (4, 'Jacuzzi', 25.00);
     
 INSERT INTO room (RoomNum, RoomTypeId, AdaAccessible)
 VALUES
-	(201, 2, false),
+    (201, 2, false),
     (202, 2, true),
     (203, 2, false),
     (204, 2, true),
@@ -36,7 +36,7 @@ VALUES
     
 INSERT INTO roomamenity (RoomNum, AmenityId)
 VALUES
-	(201, 1),
+    (201, 1),
     (201, 4),
     (202, 2),
     (203, 1),
@@ -78,7 +78,7 @@ VALUES
 -- GuestId = GuestAddressID 
 INSERT INTO guestaddress (GuestAddressId, Address, City, State, ZipCode)
 VALUES
-	(1, '100-10 Testing Blvd', 'NYC', 'NY', '55555'),
+    (1, '100-10 Testing Blvd', 'NYC', 'NY', '55555'),
     (2, '379 Old Shore Street', 'Council Bluffs', 'IA', '51501'),
     (3, '750 Wintergreen Dr.', 'Wasilla', 'AK', '99654'),
     (4, '9662 Foxrun Lane', 'Harlingen', 'TX', '78552'),
@@ -93,7 +93,7 @@ VALUES
     
 INSERT INTO guest (FirstName, LastName, PhoneNumber, GuestAddressId)
 VALUES
-	('Narish', 'Singh', '555-555-5555', 1),
+    ('Narish', 'Singh', '555-555-5555', 1),
     ('Mack', 'Simmer', '291-553-0508', 2),
     ('Bettyann', 'Seery', '478-277-9632', 3),
     ('Duane', 'Cullison', '308-494-0198', 4),
@@ -108,7 +108,7 @@ VALUES
 
 INSERT INTO reservation (RoomNum, GuestID, AdultCount, ChildCount, StartDate, EndDate, TotalRoomCost)
 VALUES
-	(308, 2, 1, 0, '2023-02-02', '2023-02-04', 299.98),
+    (308, 2, 1, 0, '2023-02-02', '2023-02-04', 299.98),
     (203, 3, 2, 1, '2023-02-05', '2023-02-10', 999.95),
     (305, 4, 2, 0, '2023-02-22', '2023-02-24', 349.98),
     (201, 5, 2, 2, '2023-03-06', '2023-03-07', 199.99),
@@ -137,19 +137,26 @@ VALUES
 -- Deletion of Jeremiah Pendergrass
 DELETE FROM reservation
 WHERE GuestId = 8;
+
 DELETE FROM guest
 WHERE GuestId = 8;
+
 DELETE FROM guestaddress
 WHERE GuestAddressId = 8;
 
 --  view data
 SELECT * FROM room
 ORDER BY RoomNum;
+
 SELECT * FROM roomtype;
+
 SELECT * FROM roomamenity
 ORDER BY RoomNum;
+
 SELECT * FROM amenity;
 
 SELECT * FROM guest;
+
 SELECT * FROM guestaddress;
+
 SELECT * FROM reservation;
