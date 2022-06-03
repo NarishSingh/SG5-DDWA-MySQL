@@ -4,7 +4,7 @@ USE hotel;
 -- list reservations that end in July 2023
 -- guest name, the room #'s, and dates
 SELECT
-	concat(g.FirstName, ' ', g.LastName) GuestName,
+    CONCAT(g.FirstName, ' ', g.LastName) GuestName,
     ro.RoomNum,
     res.StartDate,
     res.EndDate
@@ -12,7 +12,7 @@ FROM guest g
 INNER JOIN reservation res ON res.GuestID = g.GuestID
 INNER JOIN room ro ON ro.RoomNum = res.RoomNum
 WHERE res.EndDate >= '2023-07-01'
-	AND res.EndDate <= '2023-07-31';
+    AND res.EndDate <= '2023-07-31';
 
 -- 4 rows
 
@@ -22,7 +22,7 @@ WHERE res.EndDate >= '2023-07-01'
 -- list of all reservations for rooms with a jacuzzi
 -- guest's name, room #, and dates of reservation
 SELECT
-	CONCAT(g.FirstName, ' ', g.LastName) GuestName,
+    CONCAT(g.FirstName, ' ', g.LastName) GuestName,
     ro.RoomNum,
     res.StartDate,
     res.EndDate
@@ -40,7 +40,7 @@ WHERE AmenityId = 4;
 -- list of all the rooms reserved for a chosen guest
 -- name, the room(s), starting date, and how many people
 SELECT
-	concat(g.FirstName, ' ', g.LastName) GuestName,
+    CONCAT(g.FirstName, ' ', g.LastName) GuestName,
     ro.RoomNum,
     res.StartDate,
     res.EndDate,
@@ -59,7 +59,7 @@ GROUP BY ro.RoomNum;
 -- a list of rooms, reservation ID, and per-room cost for each reservation
 -- include all rooms, whether or not there is a reservation
 SELECT
-	ro.RoomNum,
+    ro.RoomNum,
     res.ReservationId,
     res.TotalRoomCost
 FROM room ro
@@ -74,15 +74,14 @@ ORDER BY ro.RoomNum;
 -- 5
 -- all rooms with at least 3 guests during April 2023
 SELECT
-	ro.RoomNum,
+    ro.RoomNum,
     res.AdultCount + res.ChildCount TotalOccupants,
     res.StartDate,
     res.EndDate
 FROM room ro
 INNER JOIN reservation res ON res.RoomNum = ro.RoomNum
 WHERE res.AdultCount + res.ChildCount >= 3
-	AND 
-		((res.StartDate >= '2023-04-01' AND res.StartDate <= '2023-04-30') 
+	AND ((res.StartDate >= '2023-04-01' AND res.StartDate <= '2023-04-30') 
 		OR (res.EndDate >= '2023-04-01' AND res.EndDate <= '2023-04-30'))
 GROUP BY ro.RoomNum;
 
@@ -94,7 +93,7 @@ GROUP BY ro.RoomNum;
 -- all guest names and the number of reservations per guest
 -- sorted starting with the guest with the most reservations and then by the guest's last name.
 SELECT
-	CONCAT(g.FirstName, ' ', g.LastName) GuestName,
+    CONCAT(g.FirstName, ' ', g.LastName) GuestName,
     COUNT(res.ReservationId) ReservationCount
 FROM guest g
 INNER JOIN reservation res ON res.GuestID = g.GuestID
@@ -108,7 +107,7 @@ ORDER BY COUNT(res.ReservationId) DESC, g.LastName;
 -- 7
 -- the name, address, and phone num of a guest based on a chosen phone number
 SELECT
-	CONCAT(g.FirstName, ' ', g.LastName) GuestName,
+    CONCAT(g.FirstName, ' ', g.LastName) GuestName,
     ga.Address,
     g.PhoneNumber
 FROM guest g
